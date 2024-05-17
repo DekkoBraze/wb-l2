@@ -1,5 +1,13 @@
 package main
 
+import (
+	"fmt"
+	"log"
+	"os"
+
+	"github.com/beevik/ntp"
+)
+
 /*
 === Базовая задача ===
 
@@ -12,6 +20,16 @@ package main
 Программа должна проходить проверки go vet и golint.
 */
 
-func main() {
+// PrintTime : Функция вывода точного времени
+func PrintTime() {
+	time, err := ntp.Time("0.beevik-ntp.pool.ntp.org")
+	if err != nil {
+		log.Println(err)
+		os.Exit(1)
+	}
+	fmt.Println(time)
+}
 
+func main() {
+	PrintTime()
 }

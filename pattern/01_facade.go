@@ -23,6 +23,7 @@ import (
 - Для часто используемых через фасад операций может наблюдаться ухудшение производительности
 */
 
+// Обработчик ввода
 type Inputer struct{}
 
 func (inp *Inputer) Input() (login, password string) {
@@ -33,6 +34,7 @@ func (inp *Inputer) Input() (login, password string) {
 	return
 }
 
+// Валидатор
 type Validator struct{}
 
 func (val *Validator) Validate(login, password string) error {
@@ -45,6 +47,7 @@ func (val *Validator) Validate(login, password string) error {
 	return nil
 }
 
+// База данных (условно)
 type Database struct {
 	login    string
 	password string
@@ -57,12 +60,14 @@ func (db *Database) IsDataCorrect(login, password string) bool {
 	return false
 }
 
+// Фасад
 type Facade struct {
 	inp *Inputer
 	val *Validator
 	db *Database
 }
 
+// Конструктор фасада
 func NewFacade(corrLogin, corrPassword string) *Facade {
 	return &Facade{
 		inp: &Inputer{},
@@ -71,6 +76,7 @@ func NewFacade(corrLogin, corrPassword string) *Facade {
 	}
 }
 
+// Метод фасада, который вызывает методы подсистем
 func (f *Facade) CheckUser() bool {
 	login, password := f.inp.Input()
 	err := f.val.Validate(login, password)
@@ -80,6 +86,7 @@ func (f *Facade) CheckUser() bool {
 	return f.db.IsDataCorrect(login, password)
 }
 
+// Пример работы
 func main() {
 	facade := NewFacade("correctLogin", "correctPassword")
 	fmt.Println(facade.CheckUser())
