@@ -87,7 +87,7 @@ func (f *Facade) CheckUser() bool {
 }
 
 // Пример работы
-func main() {
+func FacadeExample() {
 	facade := NewFacade("correctLogin", "correctPassword")
 	fmt.Println(facade.CheckUser())
 }
