@@ -69,7 +69,7 @@ func main() {
 	// Если u - удаляем дубликаты
 	if *u {
 		for scanner.Scan() {
-			set[scanner.Text()] += 1
+			set[scanner.Text()] ++
 		}
 		for line, count := range set {
 			if count == 1 {
