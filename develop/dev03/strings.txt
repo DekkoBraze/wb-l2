@@ -1,0 +1,13 @@
+9 melon 5
+100 computer 1
+5 sky 2
+5 apple 3
+1 orange 4
+9 melon 5
+3 pineapple 6
+4 banana 11
+125 bb 8
+5 ba 9
+5 banana 11
+5 banana 10
+9 melon 5
