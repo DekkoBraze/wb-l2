@@ -20,15 +20,18 @@ import "fmt"
 - Трудно добавлять и модифицировать классы
 */
 
+// Посетитель
 type Visitor interface {
 	VisitPerson(*Person) interface{}
 	VisitCompany(*Company) interface{}
 }
 
+// Бакновский аккаунт
 type Account interface {
 	Accept(Visitor) interface{}
 }
 
+// Конкретный визитор, который выдает данные объекта в JSON
 type VisitorJson struct{}
 
 func (v *VisitorJson) VisitPerson(p *Person) interface{}{
@@ -46,6 +49,7 @@ func (v *VisitorJson) VisitCompany(c *Company) interface{}{
 	return dict
 }
 
+// Конкретный визитор, который выдает данные объекта в HTML
 type VisitorHtml struct{}
 
 func (v *VisitorHtml) VisitPerson(p *Person) interface{}{
@@ -63,6 +67,7 @@ func (v *VisitorHtml) VisitCompany(c *Company) interface{}{
 	return result
 }
 
+// Физическое лицо
 type Person struct {
 	FirstName string
 	LastName  string
@@ -74,6 +79,7 @@ func (p *Person) Accept(v Visitor) (res interface{}){
 	return
 }
 
+// Юридическое лицо
 type Company struct {
 	Name      string
 	RegNumber string
@@ -84,7 +90,8 @@ func (c *Company) Accept(v Visitor) (res interface{}){
 	return
 }
 
-func main() {
+// Пример работы
+func VisitorExample() {
 	pers := Person{FirstName: "Foo", LastName: "Barovich", Number: "12345"}
 	comp := Company{Name: "Google", RegNumber: "12345"}
 	resJson := pers.Accept(&VisitorJson{})
