@@ -34,42 +34,42 @@ type HelloBuilder struct {
 	message string
 }
 
-func (b *HelloBuilder)MakeGreeting() {
+func (b *HelloBuilder) MakeGreeting() {
 	b.message += "Hello, "
-} 
+}
 
-func (b *HelloBuilder)MakeUsername(name string) {
+func (b *HelloBuilder) MakeUsername(name string) {
 	b.message += name
-} 
+}
 
-func (b *HelloBuilder)MakePunctuation() {
+func (b *HelloBuilder) MakePunctuation() {
 	b.message += "!"
-} 
+}
 
-func (b *HelloBuilder)GetResultMessage() string{
+func (b *HelloBuilder) GetResultMessage() string {
 	return b.message
-} 
+}
 
 // Билдер, собирающий сообщение с прощанием
 type GoodbyeBuilder struct {
 	message string
 }
 
-func (b *GoodbyeBuilder)MakeGreeting() {
+func (b *GoodbyeBuilder) MakeGreeting() {
 	b.message += "Goodbye, "
-} 
+}
 
-func (b *GoodbyeBuilder)MakeUsername(name string) {
+func (b *GoodbyeBuilder) MakeUsername(name string) {
 	b.message += name
-} 
+}
 
-func (b *GoodbyeBuilder)MakePunctuation() {
+func (b *GoodbyeBuilder) MakePunctuation() {
 	b.message += "..."
-} 
+}
 
-func (b *GoodbyeBuilder)GetResultMessage() string{
+func (b *GoodbyeBuilder) GetResultMessage() string {
 	return b.message
-} 
+}
 
 // Директор для управления билдерами
 type Director struct {
@@ -77,7 +77,7 @@ type Director struct {
 }
 
 // Директорский метод создания сообщения
-func (d *Director)CreateMessage(name string) string{
+func (d *Director) CreateMessage(name string) string {
 	d.builder.MakeGreeting()
 	d.builder.MakeUsername(name)
 	d.builder.MakePunctuation()

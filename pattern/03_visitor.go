@@ -11,7 +11,7 @@ import "fmt"
 /*
 Посетитель - это поведенческий паттерн проектирования, который позволяет создавать новые операции, не меняя классы объектов,
 над которыми эти операции могут выполняться.
-Паттерн полезен, когда нужно совершить одни и те же операции с разнородными объектами, 
+Паттерн полезен, когда нужно совершить одни и те же операции с разнородными объектами,
 когда классам нужно добавить методы без изменения самих классов,
 или когда к классам часто добавляются новые методы и их структура практически не меняется.
 Пример: разные типы сериализации информации о различных типах клиентах банка
@@ -37,7 +37,7 @@ type Account interface {
 // Конкретный визитор, который выдает данные объекта в JSON
 type VisitorJson struct{}
 
-func (v *VisitorJson) VisitPerson(p *Person) interface{}{
+func (v *VisitorJson) VisitPerson(p *Person) interface{} {
 	dict := make(map[string]string)
 	dict["FirstName"] = p.FirstName
 	dict["LastName"] = p.LastName
@@ -45,7 +45,7 @@ func (v *VisitorJson) VisitPerson(p *Person) interface{}{
 	return dict
 }
 
-func (v *VisitorJson) VisitCompany(c *Company) interface{}{
+func (v *VisitorJson) VisitCompany(c *Company) interface{} {
 	dict := make(map[string]string)
 	dict["Name"] = c.Name
 	dict["RegNumber"] = c.RegNumber
@@ -55,18 +55,18 @@ func (v *VisitorJson) VisitCompany(c *Company) interface{}{
 // Конкретный визитор, который выдает данные объекта в HTML
 type VisitorHtml struct{}
 
-func (v *VisitorHtml) VisitPerson(p *Person) interface{}{
-	result := "<table><tr><td>Свойство<td><td>Значение</td></tr>";
-    result += "<tr><td>Name<td><td>" + p.FirstName + "</td></tr>";
-    result += "<tr><td>Number<td><td>" + p.LastName + "</td></tr>";
-	result += "<tr><td>Number<td><td>" + p.Number + "</td></tr></table>";
+func (v *VisitorHtml) VisitPerson(p *Person) interface{} {
+	result := "<table><tr><td>Свойство<td><td>Значение</td></tr>"
+	result += "<tr><td>Name<td><td>" + p.FirstName + "</td></tr>"
+	result += "<tr><td>Number<td><td>" + p.LastName + "</td></tr>"
+	result += "<tr><td>Number<td><td>" + p.Number + "</td></tr></table>"
 	return result
 }
 
-func (v *VisitorHtml) VisitCompany(c *Company) interface{}{
-	result := "<table><tr><td>Свойство<td><td>Значение</td></tr>";
-    result += "<tr><td>Name<td><td>" + c.Name + "</td></tr>";
-    result += "<tr><td>Number<td><td>" + c.RegNumber + "</td></tr></table>";
+func (v *VisitorHtml) VisitCompany(c *Company) interface{} {
+	result := "<table><tr><td>Свойство<td><td>Значение</td></tr>"
+	result += "<tr><td>Name<td><td>" + c.Name + "</td></tr>"
+	result += "<tr><td>Number<td><td>" + c.RegNumber + "</td></tr></table>"
 	return result
 }
 
@@ -77,7 +77,7 @@ type Person struct {
 	Number    string
 }
 
-func (p *Person) Accept(v Visitor) (res interface{}){
+func (p *Person) Accept(v Visitor) (res interface{}) {
 	res = v.VisitPerson(p)
 	return
 }
@@ -88,7 +88,7 @@ type Company struct {
 	RegNumber string
 }
 
-func (c *Company) Accept(v Visitor) (res interface{}){
+func (c *Company) Accept(v Visitor) (res interface{}) {
 	res = v.VisitCompany(c)
 	return
 }

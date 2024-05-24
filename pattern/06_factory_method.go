@@ -30,7 +30,7 @@ type Bike struct {
 	Name string
 }
 
-func (v *Bike)GetInfo() {
+func (v *Bike) GetInfo() {
 	fmt.Printf("This is a bike - %v\n", v.Name)
 }
 
@@ -39,7 +39,7 @@ type Car struct {
 	Name string
 }
 
-func (v *Car)GetInfo() {
+func (v *Car) GetInfo() {
 	fmt.Printf("This is a car - %v\n", v.Name)
 }
 
@@ -49,16 +49,16 @@ type Factory interface {
 }
 
 // Конкретная фабрика, создающая мотоциклы
-type BikeFactory struct {}
+type BikeFactory struct{}
 
-func (f *BikeFactory)Create() Vehicle{
+func (f *BikeFactory) Create() Vehicle {
 	return &Bike{Name: "Урал"}
 }
 
 // Конкретная фабрика, создающая автомобили
-type CarFactory struct {}
+type CarFactory struct{}
 
-func (f *CarFactory)Create() Vehicle{
+func (f *CarFactory) Create() Vehicle {
 	return &Car{Name: "Газель"}
 }
 

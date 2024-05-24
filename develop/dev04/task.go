@@ -67,7 +67,7 @@ func FindAnagrams(arr []string) *map[string][]string {
 			delete(set, k)
 			continue
 		}
-		
+
 		// Делаем ключом в новой мапе первый встреченный элемент множества и присваиваем отсортированное множество
 		firstVal := val[0]
 		sort.Strings(val)

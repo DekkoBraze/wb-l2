@@ -31,7 +31,7 @@ type BaseHandler struct {
 	Next Handler
 }
 
-func (h *BaseHandler)SetNext(nextHandler Handler) {
+func (h *BaseHandler) SetNext(nextHandler Handler) {
 	h.Next = nextHandler
 }
 
@@ -40,7 +40,7 @@ type StringHandler struct {
 	BaseHandler
 }
 
-func (h *StringHandler)Handle(variable interface{}) {
+func (h *StringHandler) Handle(variable interface{}) {
 	newVar, ok := variable.(string)
 	if !ok && h.Next != nil {
 		h.Next.Handle(variable)
@@ -54,7 +54,7 @@ type IntHandler struct {
 	BaseHandler
 }
 
-func (h *IntHandler)Handle(variable interface{}) {
+func (h *IntHandler) Handle(variable interface{}) {
 	newVar, ok := variable.(int)
 	if !ok && h.Next != nil {
 		h.Next.Handle(variable)
@@ -68,7 +68,7 @@ type MapStringIntHandler struct {
 	BaseHandler
 }
 
-func (h *MapStringIntHandler)Handle(variable interface{}) {
+func (h *MapStringIntHandler) Handle(variable interface{}) {
 	newVar, ok := variable.(map[string]int)
 	if !ok && h.Next != nil {
 		h.Next.Handle(variable)

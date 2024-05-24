@@ -64,7 +64,7 @@ func (db *Database) IsDataCorrect(login, password string) bool {
 type Facade struct {
 	inp *Inputer
 	val *Validator
-	db *Database
+	db  *Database
 }
 
 // Конструктор фасада
@@ -72,7 +72,7 @@ func NewFacade(corrLogin, corrPassword string) *Facade {
 	return &Facade{
 		inp: &Inputer{},
 		val: &Validator{},
-		db: &Database{login: corrLogin, password: corrPassword},
+		db:  &Database{login: corrLogin, password: corrPassword},
 	}
 }
 

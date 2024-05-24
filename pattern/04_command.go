@@ -30,13 +30,13 @@ type Command interface {
 // Сервер (receiver)
 type Server struct {
 	Working bool
-	Ip string
-	Port string
-	Mode string
+	Ip      string
+	Port    string
+	Mode    string
 }
 
 // Включение сервера с параметрами
-func (s *Server)On(ip, port, mode string) {
+func (s *Server) On(ip, port, mode string) {
 	if s.Working {
 		fmt.Printf("Сервер уже был запущен по адресу %v:%v в режиме %v\n", ip, port, mode)
 		return
@@ -49,7 +49,7 @@ func (s *Server)On(ip, port, mode string) {
 }
 
 // Выключение сервера
-func (s *Server)Off() {
+func (s *Server) Off() {
 	s.Ip = ""
 	s.Port = ""
 	s.Mode = ""
@@ -60,12 +60,12 @@ func (s *Server)Off() {
 // Команда включения сервера
 type CommandServerOn struct {
 	Server Server
-	Ip string
-	Port string
-	Mode string
+	Ip     string
+	Port   string
+	Mode   string
 }
 
-func (c *CommandServerOn)Execute() {
+func (c *CommandServerOn) Execute() {
 	c.Server.On(c.Ip, c.Port, c.Mode)
 }
 
@@ -74,7 +74,7 @@ type CommandServerOff struct {
 	Server Server
 }
 
-func (c *CommandServerOff)Execute() {
+func (c *CommandServerOff) Execute() {
 	c.Server.Off()
 }
 
@@ -83,11 +83,11 @@ type Invoker struct {
 	command Command
 }
 
-func (i *Invoker)SetCommand(c Command) {
+func (i *Invoker) SetCommand(c Command) {
 	i.command = c
 }
 
-func (i *Invoker)ExecuteCommand() {
+func (i *Invoker) ExecuteCommand() {
 	i.command.Execute()
 }
 
